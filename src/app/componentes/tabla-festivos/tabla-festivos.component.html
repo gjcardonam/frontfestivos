@@ -1,0 +1,58 @@
+<form #formularioFestivos="ngForm" (ngSubmit)="verificarAnno()">
+<div style="margin-bottom: 50px; margin-top: 10px">
+  <mat-form-field appearance="fill">
+    <mat-label>Seleccionar fecha</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      placeholder="Seleccione una fecha"
+      class="custom-input"
+      name="fecha"
+      [(ngModel)]="fecha"
+      required
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Validar Fecha</button>
+</div>
+</form>
+
+<form #formularioFestivos="ngForm" (ngSubmit)="elegirAnno()">
+  <mat-form-field appearance="fill">
+    <mat-label>Año</mat-label>
+    <input
+      matInput
+      type="number"
+      placeholder="Ingrese el año"
+      class="custom-input"
+      name="anno"
+      [(ngModel)]="anno"
+      required
+    />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">
+    Obtener Festivos
+  </button>
+</form>
+
+<div>
+  <div style="float: left; width: 75%">
+    <ngx-datatable
+      class="dark"
+      [rows]="festivos"
+      [columnMode]="ColumnMode.force"
+      [columns]="columnas"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      rowHeight="auto"
+      [selectCheck]="checkSelectable"
+      [selected]="selected"
+      [selectionType]="SelectionType.multi"
+      (activate)="onActivate($event)"
+      (select)="onSelect($event)"
+    >
+    </ngx-datatable>
+  </div>
+</div>
